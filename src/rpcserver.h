@@ -261,7 +261,7 @@ extern json_spirit::Value mnsync(const json_spirit::Array& params, bool fHelp);
   * @return The list of open and pending transactions as JSON value. Open transactions go first.
   * * Example:<br>
   * \verbatim
-    dxGetTransactions
+    dxGetOrderss
 ￼
     [
         {
@@ -288,7 +288,7 @@ extern json_spirit::Value mnsync(const json_spirit::Array& params, bool fHelp);
   * \endverbatim
   */
 
-extern json_spirit::Value dxGetTransactions(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value dxGetOrderss(const json_spirit::Array& params, bool fHelp);
 
 /**
  * @brief Returns the list of historical(closed) transactions
@@ -299,7 +299,7 @@ extern json_spirit::Value dxGetTransactions(const json_spirit::Array& params, bo
  * @return The list of historical transaction  as a JSON value
  * * Example:<br>
  * \verbatim
-    dxGetTransactionsHistory ALL
+    dxGetOrderssHistory ALL
 ￼
     [
         {
@@ -325,7 +325,7 @@ extern json_spirit::Value dxGetTransactions(const json_spirit::Array& params, bo
     ]
  * \endverbatim
  */
-extern json_spirit::Value dxGetTransactionsHistory(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value dxGetOrderssHistory(const json_spirit::Array& params, bool fHelp);
 
 /**
  * @brief Returns the detailed description of given a transaction
@@ -335,7 +335,7 @@ extern json_spirit::Value dxGetTransactionsHistory(const json_spirit::Array& par
  * @return The detailed description of given transaction as a JSON value
  * * Example:<br>
  * \verbatim
-    dxGetTransactionInfo 91d0ea83edc79b9a2041c51d08037cff87c181efb311a095dfdd4edbcc7993a9
+    dxGetOrdersInfo 91d0ea83edc79b9a2041c51d08037cff87c181efb311a095dfdd4edbcc7993a9
 ￼
     [
         {
@@ -351,10 +351,10 @@ extern json_spirit::Value dxGetTransactionsHistory(const json_spirit::Array& par
     ]
  * \endverbatim
  */
-extern json_spirit::Value dxGetTransactionInfo(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value dxGetOrdersInfo(const json_spirit::Array& params, bool fHelp);
 
 /**
- * @brief Returns the list of available currencies
+ * @brief Returns the list of the currencies supported by the wallet
  * @param params The list of input params, should be empty
  * @param fHelp If is true then an exception with parameter description message will be thrown
  * @return The list of available currencies as a JSON value
@@ -369,7 +369,25 @@ extern json_spirit::Value dxGetTransactionInfo(const json_spirit::Array& params,
     }
  * \endverbatim
  */
-extern json_spirit::Value dxGetCurrencies(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value dxGetLocalTokens(const json_spirit::Array& params, bool fHelp);
+
+/**
+ * @brief Returns the list of the currencies supported bt the network
+ * @param params The list of input params, should be empty
+ * @param fHelp If is true then an exception with parameter description message will be thrown
+ * @return The list of available currencies as a JSON value
+ * * Example:<br>
+ * \verbatim
+    {
+        "DCR" : "",
+        "DEC" : "",
+        "DOGE" : "",
+        "LTC" : "",
+        "SYS" : ""
+    }
+ * \endverbatim
+ */
+extern json_spirit::Value dxGetNetworkTokens(const json_spirit::Array& params, bool fHelp);
 
 /**
  * @brief Creates a new transaction
@@ -434,22 +452,6 @@ extern json_spirit::Value dxAcceptTransaction(const json_spirit::Array& params, 
 
  */
 extern json_spirit::Value dxCancelTransaction(const json_spirit::Array& params, bool fHelp);
-
-/**
- * @brief Rollback given transaction
- * @param params The list of input params:<br>
- * params[0] : transaction id<br>
- * @param fHelp If is true then an exception with parameter description message will be thrown
- * @return The status of the operation
- * * Example:<br>
- * \verbatim
-    dxrollbackTransaction 6be548bc46a3dcc69b6d56529948f7e679dd96657f85f5870a017e005caa050a
-    {
-        "id" : "6be548bc46a3dcc69b6d56529948f7e679dd96657f85f5870a017e005caa050a"
-    }
- * \endverbatim
- */
-extern json_spirit::Value dxrollbackTransaction(const json_spirit::Array& params, bool fHelp);
 
 /**
  * @brief Returns trading history as a 'price chart'
